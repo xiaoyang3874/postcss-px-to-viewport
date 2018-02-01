@@ -16,8 +16,8 @@ If your project involves a fixed width, this script will help to convert pixels 
   padding: 5vmin 9.5px 1px;
   border: 3px solid black;
   border-bottom-width: 1px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 14px;  /*no*/
+  line-height: 20px;  /*no*/
 }
 
 .class2 {
@@ -41,8 +41,8 @@ If your project involves a fixed width, this script will help to convert pixels 
   padding: 5vmin 2.96875vw 1px;
   border: 0.9375vw solid black;
   border-bottom-width: 1px;
-  font-size: 4.375vw;
-  line-height: 6.25vw;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .class2 {
