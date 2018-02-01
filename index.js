@@ -12,16 +12,17 @@ var objectAssign = require('object-assign');
 var pxRegex = /"[^"]+"|'[^']+'|url\([^\)]+\)|(\d*\.?\d+)px/ig;
 
 var defaults = {
-  viewportWidth: 320,
-  viewportHeight: 568, // not now used; TODO: need for different units and math for different properties
+  viewportWidth: 750,
+  viewportHeight: 1334, // not now used; TODO: need for different units and math for different properties
   unitPrecision: 5,
   viewportUnit: 'vw',
   selectorBlackList: [],
   minPixelValue: 1,
-  mediaQuery: false
+  mediaQuery: false,
+  keepComment: 'no' // no transform value comment (default: `no`)
 };
 
-module.exports = postcss.plugin('postcss-px-to-viewport', function (options) {
+module.exports = postcss.plugin('postcss-px2vw', function (options) {
 
   var opts = objectAssign({}, defaults, options);
   var pxReplace = createPxReplace(opts.viewportWidth, opts.minPixelValue, opts.unitPrecision, opts.viewportUnit);
@@ -33,6 +34,10 @@ module.exports = postcss.plugin('postcss-px-to-viewport', function (options) {
       if (decl.value.indexOf('px') === -1) return;
 
       if (blacklistedSelector(opts.selectorBlackList, decl.parent.selector)) return;
+
+      var next = decl.next()
+
+      if (next && next.type === 'comment' && next.text.trim() === opts.keepComment) return;
 
       decl.value = decl.value.replace(pxRegex, pxReplace);
     });

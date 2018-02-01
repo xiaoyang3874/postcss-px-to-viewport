@@ -87,13 +87,14 @@ fs.writeFile('main-viewport.css', processedCss, function (err) {
 Default:
 ```js
 {
-  viewportWidth: 320,
-  viewportHeight: 568,
+  viewportWidth: 750,
+  viewportHeight: 1334,
   unitPrecision: 5,
   viewportUnit: 'vw',
   selectorBlackList: [],
   minPixelValue: 1,
-  mediaQuery: false
+  mediaQuery: false,
+  keepComment: 'no'
 }
 ```
 - `viewportWidth` (Number) The width of the viewport.
@@ -107,6 +108,7 @@ Default:
         - `[/^body$/]` will match `body` but not `.body`
 - `minPixelValue` (Number) Set the minimum pixel value to replace.
 - `mediaQuery` (Boolean) Allow px to be converted in media queries.
+- `keepComment` (String) no transform value comment (default: `no`)
 
 
 ### Use with gulp-postcss
